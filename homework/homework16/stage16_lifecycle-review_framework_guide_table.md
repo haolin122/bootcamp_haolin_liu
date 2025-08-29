@@ -26,14 +26,15 @@ It will help you connect each stage of the **Applied Financial Engineering Lifec
 | **6. Data Preprocessing** | Mean/median imputation; basic normalization as needed. | Higher null rates degrade stability. | Default = mean impute; record %missing. | Robust scalers; imputation strategy by segment. |
 | **7. Outlier Analysis** | 3σ scenario vs baseline comparison. | Distinguishing noise from rare events. | Kept both scenarios; reported sensitivity. | Try Huber loss / winsorization with thresholds. |
 | **8. Exploratory Data Analysis (EDA)** | Scatter, line, residuals; subgroup by `segment`. | Segment C behaved differently. | Side-by-side plots; residual diagnostics. | Correlation heatmaps; partial dependence style views. |
-| **9. Feature Engineering** | *(What features did you construct? Technical indicators, lags, ratios?)* | *(Which features were difficult to design or justify?)* | *(How did you validate usefulness of features?)* | *(What domain-driven features could you add?)* |
-| **10. Modeling (Regression / Time Series / Classification)** | *(Which models did you try and why?)* | *(What challenges arose — overfitting, convergence, runtime?)* | *(How did you choose/tune the final model?)* | *(What alternative models would you try in future?)* |
+| **9. Feature Engineering** | Minimal . | Risk of overfitting with polynomial terms. | Deferred complex features to keep clarity. | Add lags/ratios and regularization if scope expands. |
+| **10. Modeling (Regression / Time Series / Classification)** | Simple linear regressio. | Sensitivity to missing/outliers. | Seeded fit; compared scenarios. | Try ridge; quantile regression for intervals. |
 | **11. Evaluation & Risk Communication** | *(Which metrics did you evaluate?)* | *(Which assumptions/risks were most concerning?)* | *(How did you communicate uncertainty, error, tradeoffs?)* | *(What evaluation methods would improve robustness?)* |
-| **12. Results Reporting, Delivery Design & Stakeholder Communication** | *(How did you present results? Slides, reports, dashboards?)* | *(What was difficult to explain to non-technical stakeholders?)* | *(What delivery choices helped communication land?)* | *(What would you change in delivery/communication?)* |
-| **13. Productization** | *(How did you prepare the model/data pipeline for production use?)* | *(What issues arose around scalability, maintainability?)* | *(What design decisions ensured reliability?)* | *(What productization steps would you add?)* |
-| **14. Deployment & Monitoring** | *(How did you deploy your solution?)* | *(What monitoring or alerting challenges did you face?)* | *(How did you track model drift or system performance?)* | *(What would you upgrade in deployment/monitoring?)* |
-| **15. Orchestration & System Design** | *(How did you integrate tasks into workflows/pipelines?)* | *(What complexity or dependency issues appeared?)* | *(How did you solve orchestration problems?)* | *(What would you change in system design?)* |
-| **16. Lifecycle Review & Reflection** | *(What are your biggest takeaways from the full lifecycle?)* | *(Where did you struggle the most?)* | *(What patterns or strategies helped across multiple stages?)* | *(What would you do differently in your next project?)* |
+| **12. Results Reporting, Delivery & Stakeholder Communication** | 3 key charts + executive summary; clear captions. | Translating tech terms to actions. | Plain-language bullets; consistent axes/colors. | Add a 1-page “What this means for you” appendix. |
+| **13. Productization** | Saved `model.pkl`; Flask API; `requirements.txt`. | Environment parity, deterministic outputs. | Fixed seed, checksum for inputs, simple error handling. | Containerize; add basic auth & rate limits. |
+| **14. Deployment & Monitoring** | Defined 4-layer monitors: Data/Model/System/Business with thresholds. | Alert routing & drift triggers. | PSI>0.2 or 2-week MAE breach triggers retrain; owners named. | Dashboard with drill-downs; incident templates. |
+| **15. Orchestration & System Design** | DAG: ingest → clean → train_or_score → report; logs + checkpoints. | Idempotency/skip logic. | Feature-hash checkpoint; `--force` overrides. | Consider Airflow/Prefect; parallelize charts. |
+| **16. Lifecycle Review & Reflection** | Documented end-to-end; repo cleaned and reproducible. | Balancing simplicity vs robustness. | Prefer small, testable steps; log + seed + checkpoints. | Expand features, add tests/CI, tighten monitoring. |
+
 
 ---
 
